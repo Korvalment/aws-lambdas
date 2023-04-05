@@ -31,6 +31,6 @@ def lambda_handler(event, context):
     )
 
 
-    response = json.loads(json.dumps(response, default=str))
-    
-    return response
+    #response = json.loads(json.dumps(response, default=str))
+    return response["Policy"]["Arn"]
+
