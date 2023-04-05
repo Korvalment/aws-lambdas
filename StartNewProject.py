@@ -12,7 +12,7 @@
 
 # This will be implemented by:
 #  function CreateUserPool(user_pool_name) that returns [user_pool_id, user_pool_arn]
-#  function CreateClient(user_pool_id) that will return client_id
+#  function CreateClient(user_pool_id, client_name) that will return client_id
 #  function CreatePolicy(user_pool_arn, policy_name) that returns policy_arn
 #  function CreteUser(amplify_pool_id, user_mail) that returns user_id
 #  function AttachPolicy(user_id, policy_arn)
