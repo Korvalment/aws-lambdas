@@ -5,7 +5,7 @@ def lambda_handler(event, context):
     
     client = boto3.client('iam')
     cognit_pool_arn = event['key1']
-    policy_name - event['key2']
+    policy_name = event['key2']
     
     cognit_pool_arn = "\"" + cognit_pool_arn + "\""
     policy_document = '''{
