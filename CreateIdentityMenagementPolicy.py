@@ -7,7 +7,7 @@ def lambda_handler(event, context):
     cognit_pool_arn = event['key1']
     policy_name - event['key2']
     
-    cognit_pool_arn = "\""+cognit_pool_arn+"\"
+    cognit_pool_arn = "\"" + cognit_pool_arn + "\""
     policy_document = '''{
     "Version": "2012-10-17",
     "Statement": [
