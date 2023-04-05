@@ -1,3 +1,4 @@
+#this lambda requires 'CreatePolicy' policy from 'iam' category
 import boto3
 import json
 
