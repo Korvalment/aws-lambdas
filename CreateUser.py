@@ -27,7 +27,6 @@ def lambda_handler(event, context):
 
 
    # Convert datetime objects to strings
-    response = json.loads(json.dumps(response, default=str))
+   # response = json.loads(json.dumps(response, default=str))
 
-    return response
-    #retur user_id !!!
+    return response["User"]["Username"]
