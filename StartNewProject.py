@@ -34,24 +34,15 @@ def CreateUserPool(user_pool_name):
     }
     username_attributes = ["email"]
     
-    # Create a Cognito User Pool
     cognito_idp = boto3.client("cognito-idp")
     response = cognito_idp.create_user_pool(
         PoolName=user_pool_name,
         Policies=policies,
         UsernameAttributes=username_attributes
     )
+    return {"id": response["UserPool"]["Id"], "arn": response["UserPool"]["Arn"]}
 
-   # Convert datetime objects to strings
-    response = json.loads(json.dumps(response, default=str))
-    user_pool_id = response["UserPool"]["Id"]
-    #user_pool_arn = respone[   ][   ]
-  
-    return {
-        "id": user_pool_id, 
-        "arn": user_pool_arn
-        }
-  
+
 def CreateClient(user_pool_id, client_name):
     pass
     #return client_id
@@ -75,10 +66,8 @@ def CreateUser(amplify_pool_id, user_mail):
             'EMAIL',
         ]
     )
-    # Convert datetime objects to strings
-    response = json.loads(json.dumps(response, default=str))
-    return response
-    #retur user_id !!!
+    return response["User"]["Username"]
+
 
 def CreatePolicy(cognit_pool_arn, policy_name):
     client = boto3.client('iam')
@@ -102,9 +91,8 @@ def CreatePolicy(cognit_pool_arn, policy_name):
     PolicyName=policy_name,
     PolicyDocument = policy_document
     )
-    response = json.loads(json.dumps(response, default=str))
-    return response
-    #return arn
+    return response["Policy"]["Arn"]
+
     
 def AttachPolicy(user_id, policy_arn):
     pass
@@ -128,7 +116,7 @@ def lambda_handler(event, context):
 
     return {
         "user pool id": new_user_pool['id'], 
-        "client1 id": client1_id, # ADD THIS
+        "client1 id": client1_id,
         "client2 id": client2_id, 
         "techuser id": tech_user_id
         }
