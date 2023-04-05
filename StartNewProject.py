@@ -118,13 +118,17 @@ def lambda_handler(event, context):
 
     amplify_pool_id = 'XYZ' #copy-paste your amplify userpool id from AWS
     new_user_pool = CreateUserPool(new_user_pool_name)
-    policy_arn = CreatePolicy(new_user_pool["id"])
+    
+    client1_id = CreateClient(new_user_pool['id'], 'client1')
+    client2_id = CreateClient(new_user_pool['id'], 'client2')
+    
+    policy_arn = CreatePolicy(new_user_pool["arn"], new_user_pool_name+"_IntegrationManagement_policy")
     tech_user_id = CreateUser(amplify_pool_id, tech_user_mail)
     AttachPolicy(tech_user_id, policy_arn)
 
     return {
-        "user pool id": new_user_pool_id, 
-        "client1 id": new_user_pool_return["client1 id"], 
-        "client2 id": new_user_pool_return["client2 id"], 
+        "user pool id": new_user_pool['id'], 
+        "client1 id": client1_id, # ADD THIS
+        "client2 id": client2_id, 
         "techuser id": tech_user_id
         }
