@@ -24,7 +24,7 @@ import json
 
 def CreateUserPool(user_pool_name):
     policies = {
-   "PasswordPolicy": { # pass pol is weak for testing reason
+    "PasswordPolicy": { # pass pol is weak for testing reason
             "MinimumLength": 6,
             "RequireLowercase": False,
             "RequireNumbers": False,
@@ -57,7 +57,7 @@ def CreateClient(user_pool_id, client_name):
     #return client_id
 
 def CreateUser(amplify_pool_id, user_mail):
-     cognito = boto3.client("cognito-idp")
+    cognito = boto3.client("cognito-idp")
     response = cognito.admin_create_user(
         UserPoolId=amplify_pool_id,
         Username=user_mail,
@@ -75,7 +75,7 @@ def CreateUser(amplify_pool_id, user_mail):
             'EMAIL',
         ]
     )
-   # Convert datetime objects to strings
+    # Convert datetime objects to strings
     response = json.loads(json.dumps(response, default=str))
     return response
     #retur user_id !!!
