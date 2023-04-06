@@ -6,8 +6,8 @@ def lambda_handler(event, context):
     client = boto3.client('iam')
     
     cognit_pool_arn = "\"" + event['key1'] + "\""
-    tech_grup_name = event['key2']
-    role_name = tech_grup_name + "_role"
+    new_pool_id = event['key2']
+    role_name = "TechUser_" + new_pool_id + "_role"
     policy_document = '''{
     "Version": "2012-10-17",
     "Statement": [
@@ -25,10 +25,10 @@ def lambda_handler(event, context):
 }'''
     #error:
     #"errorMessage": "An error occurred (MalformedPolicyDocument) when calling the CreateRole operation: Has prohibited field Resource",
-    # needs fix
+    # 
     
     response = client.create_role(
-        RoleName='string',
+        RoleName=role_name,
         AssumeRolePolicyDocument=policy_document
     )
 

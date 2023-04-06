@@ -2,9 +2,9 @@ import boto3
 import json
 
 def lambda_handler(event, context):
-    amplify_user_pool_id = "XXXXXX" #enter your amplify userPoll id
-    user_name = event['key1'] 
-    group_name = event['key2'] #'TechUser_manged_pool_id'
+    amplify_user_pool_id = event['key1']
+    user_name = event['key2'] 
+    group_name = event['key3'] #'TechUser'
 
     cognito = boto3.client("cognito-idp")
     response = cognito.admin_add_user_to_group(
