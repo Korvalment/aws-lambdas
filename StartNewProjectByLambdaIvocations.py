@@ -16,7 +16,8 @@ def lambda_handler(event, context):
     "create_user_arn": "xxxxxx",
     #"create_role_arn": "xxxxxx",
     "create_group_arn": "xxxxxx",
-    "add_user_to_group_arn": "xxxxxx"
+    "add_user_to_group_arn": "xxxxxx",
+    "add_item_to_db": "xxxxxx"
     }
     
     invocation_type = "RequestResponse"
@@ -28,6 +29,7 @@ def lambda_handler(event, context):
     #role_arn = RunLambda(arn_dict["create_role_arn"], invocation_type, new_user_pool["arn"], new_user_pool["id"])
     group_name = RunLambda(arn_dict["create_group_arn"], invocation_type, amplify_user_pool_id, new_user_pool["id"])
     RunLambda(arn_dict["add_user_to_group_arn"], invocation_type, amplify_user_pool_id, user_id, group_name)
+    RunLambda(arn_dict["add_item_to_db"], invocation_type, user_id, new_user_pool)
     
     #save resoults to DynamoDB
     
