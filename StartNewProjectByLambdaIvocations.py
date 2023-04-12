@@ -5,8 +5,9 @@ import json
 def lambda_handler(event, context):
     lambda_client = boto3.client('lambda')
     
-    user_pool_name = event['key1']
-    user_mail = event['key2']
+    
+    user_pool_name = event["queryStringParameters"]["project_name"]
+    user_mail = event["queryStringParameters"]["tech_user_email"]
     
     #enter your ID's and ARN's
     amplify_user_pool_id = "xxxxxx"
