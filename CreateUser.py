@@ -32,4 +32,10 @@ def lambda_handler(event, context):
     
     #return response 
     
-    return response["User"]["Username"]
+     return {
+        "statusCode": 200,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": json.dumps({"UserID": response["User"]["Username"]})
+    }
